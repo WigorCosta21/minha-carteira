@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 
-import * as S from "./styles";
+import Toogle from "../Toogle";
 import emojis from "../../utils/emojis";
+
+import * as S from "./styles";
 
 const MainHeader = () => {
   const emoji = useMemo(() => {
@@ -12,7 +14,7 @@ const MainHeader = () => {
 
   return (
     <S.Container>
-      <h1>Toogle</h1>
+      <Toogle />
 
       <S.Profile>
         <S.Welcome>Olá, {emoji}</S.Welcome>
