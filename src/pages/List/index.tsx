@@ -1,8 +1,18 @@
+import ContentHeader from "../../components/ContentHeader";
+import SelectInput from "../../components/SelectIput";
+import * as S from "./styles";
+
 const List = () => {
+  const options = [
+    { value: "Rodrigo", label: "Rodrigo" },
+    { value: "Maria", label: "Maria" },
+    { value: "Ana", label: "Ana" },
+  ];
+
   return (
-    <div>
-      <h1>List</h1>
-    </div>
+    <ContentHeader title="Dashboard" lineColor="#FFF">
+      <SelectInput options={options} />
+    </ContentHeader>
   );
 };
 
