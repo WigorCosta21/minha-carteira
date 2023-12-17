@@ -1,15 +1,20 @@
+import { ReactNode } from "react";
 import Aside from "../Aside";
 import Content from "../Content";
 import MainHeader from "../MainHeader";
 
 import * as S from "./styles";
 
-const Layout = () => {
+type Props = {
+  children: ReactNode;
+};
+
+const Layout = ({ children }: Props) => {
   return (
     <S.Grid>
       <MainHeader />
       <Aside />
-      <Content />
+      <Content>{children}</Content>
     </S.Grid>
   );
 };

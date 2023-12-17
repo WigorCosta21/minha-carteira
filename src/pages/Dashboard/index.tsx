@@ -1,8 +1,11 @@
+import ContentHeader from "../../components/ContentHeader";
+import * as S from "./style";
+
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+    <S.Container>
+      <ContentHeader />
+    </S.Container>
   );
 };
 

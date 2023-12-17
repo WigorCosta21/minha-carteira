@@ -1,14 +1,19 @@
 import { ThemeProvider } from "styled-components";
 
+import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
-import GlobalStyles from "./styles/GlobalStyles";
+
 import dark from "./styles/themes/dark";
+
+import GlobalStyles from "./styles/GlobalStyles";
 
 const App = () => {
   return (
     <ThemeProvider theme={dark}>
       <GlobalStyles />
-      <Layout />
+      <Layout>
+        <Dashboard />
+      </Layout>
     </ThemeProvider>
   );
 };
