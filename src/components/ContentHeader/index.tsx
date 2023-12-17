@@ -4,14 +4,14 @@ import * as S from "./style";
 
 interface IContentHeaderProps {
   title: string;
-  lineColor: string;
+  linecolor: string;
   children: ReactNode;
 }
 
-const ContentHeader = ({ title, lineColor, children }: IContentHeaderProps) => {
+const ContentHeader = ({ title, linecolor, children }: IContentHeaderProps) => {
   return (
     <S.Container>
-      <S.TitleContainer lineColor={lineColor}>
+      <S.TitleContainer linecolor={linecolor}>
         <h1>{title}</h1>
       </S.TitleContainer>
       <S.Controllers>{children}</S.Controllers>

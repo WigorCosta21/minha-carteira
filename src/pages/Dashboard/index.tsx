@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   return (
     <S.Container>
-      <ContentHeader title="Dashboard" lineColor="#FFF">
+      <ContentHeader title="Dashboard" linecolor="#FFF">
         <SelectInput options={options} />
       </ContentHeader>
     </S.Container>

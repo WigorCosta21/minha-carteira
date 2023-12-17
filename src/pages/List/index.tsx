@@ -12,7 +12,7 @@ const List = () => {
 
   return (
     <S.Container>
-      <ContentHeader title="Saídas" lineColor="#E44C4E">
+      <ContentHeader title="Saídas" linecolor="#E44C4E">
         <SelectInput options={options} />
       </ContentHeader>
 

@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import * as S from "./styles";
 
-type Props = {
+interface IContentProps {
   children: ReactNode;
-};
+}
 
-const Content = ({ children }: Props) => {
+const Content = ({ children }: IContentProps) => {
   return <S.Container>{children}</S.Container>;
 };
 
