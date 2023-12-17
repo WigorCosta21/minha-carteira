@@ -6,13 +6,14 @@ import Layout from "./components/Layout";
 import dark from "./styles/themes/dark";
 
 import GlobalStyles from "./styles/GlobalStyles";
+import List from "./pages/List";
 
 const App = () => {
   return (
     <ThemeProvider theme={dark}>
       <GlobalStyles />
       <Layout>
-        <Dashboard />
+        <List />
       </Layout>
     </ThemeProvider>
   );
