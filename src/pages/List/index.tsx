@@ -6,6 +6,8 @@ import * as S from "./styles";
 import { useParams } from "react-router-dom";
 import gains from "../../repositories/gains";
 import expenses from "../../repositories/expenses";
+import formatCurrency from "../../utils/formatCurrency";
+import formatDate from "./../../utils/formatDate";
 
 interface IData {
   id: string;
@@ -50,7 +52,7 @@ const List = () => {
       return {
         id: String(Math.random() * data.length),
         description: item.description,
-        amountFormatted: item.amount,
+        amountFormatted: formatCurrency(Number(item.amount)),
         frequency: item.frequency,
         dateFormatted: item.date,
         tagColor: "#4E41F0",
@@ -82,7 +84,7 @@ const List = () => {
             key={item.id}
             tagColor={item.frequency === "recorrente" ? "#4E41F0" : "#E44C4E"}
             title={item.description}
-            subtitle={item.dateFormatted}
+            subtitle={formatDate(item.dateFormatted)}
             amount={item.amountFormatted}
           />
         ))}
