@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <S.Container>
       <ContentHeader title="Dashboard" linecolor="#FFF">
-        <SelectInput options={options} />
+        <SelectInput options={options} onChange={() => {}} />
       </ContentHeader>
     </S.Container>
   );
