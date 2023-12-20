@@ -1,11 +1,24 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ContentHeader from "../../components/ContentHeader";
 import HistoryFinanceCard from "../../components/HistoryFinanceCard";
 import SelectInput from "../../components/SelectIput";
 import * as S from "./styles";
 import { useParams } from "react-router-dom";
+import gains from "../../repositories/gains";
+import expenses from "../../repositories/expenses";
+
+interface IData {
+  id: string;
+  description: string;
+  amountFormatted: string;
+  frequency: string;
+  dateFormatted: string;
+  tagColor: string;
+}
 
 const List = () => {
+  const [data, setData] = useState<IData[]>([]);
+
   const { type } = useParams();
 
   const title = useMemo(() => {
@@ -14,6 +27,10 @@ const List = () => {
 
   const LineColor = useMemo(() => {
     return type === "entry-balance" ? "#F7931B" : "#E44C4E";
+  }, [type]);
+
+  const listData = useMemo(() => {
+    return type === "entry-balance" ? gains : expenses;
   }, [type]);
 
   const months = [
@@ -27,6 +44,21 @@ const List = () => {
     { value: 2025, label: 2025 },
     { value: 2026, label: 2026 },
   ];
+
+  useEffect(() => {
+    const response = listData.map((item) => {
+      return {
+        id: String(Math.random() * data.length),
+        description: item.description,
+        amountFormatted: item.amount,
+        frequency: item.frequency,
+        dateFormatted: item.date,
+        tagColor: "#4E41F0",
+      };
+    });
+
+    setData(response);
+  }, []);
 
   return (
     <S.Container>
@@ -45,12 +77,15 @@ const List = () => {
       </S.Filters>
 
       <S.Content>
-        <HistoryFinanceCard
-          tagColor="#E44C4E"
-          title="Conta de Luz"
-          subtitle="17/12/2023"
-          amount="R$ 130,00"
-        />
+        {data.map((item) => (
+          <HistoryFinanceCard
+            key={item.id}
+            tagColor={item.frequency === "recorrente" ? "#4E41F0" : "#E44C4E"}
+            title={item.description}
+            subtitle={item.dateFormatted}
+            amount={item.amountFormatted}
+          />
+        ))}
       </S.Content>
     </S.Container>
   );
