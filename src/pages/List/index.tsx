@@ -25,11 +25,11 @@ interface IData {
 
 const List = () => {
   const [data, setData] = useState<IData[]>([]);
-  const [monthSelected, setMonthSelected] = useState<string>(
-    String(new Date().getMonth() + 1)
+  const [monthSelected, setMonthSelected] = useState<number>(
+    new Date().getMonth() + 1
   );
-  const [yearSelected, setYearSelected] = useState<string>(
-    String(new Date().getFullYear())
+  const [yearSelected, setYearSelected] = useState<number>(
+    new Date().getFullYear()
   );
   const [frequencyFilterSelected, setFrequencyFilterSelected] = useState([
     "recorrente",
@@ -38,16 +38,18 @@ const List = () => {
 
   const { type } = useParams();
 
-  const title = useMemo(() => {
-    return type === "entry-balance" ? "Entradas" : "Saídas";
-  }, [type]);
-
-  const LineColor = useMemo(() => {
-    return type === "entry-balance" ? "#F7931B" : "#E44C4E";
-  }, [type]);
-
-  const listData = useMemo(() => {
-    return type === "entry-balance" ? gains : expenses;
+  const pageData = useMemo(() => {
+    return type === "entry-balance"
+      ? {
+          title: "Entradas",
+          lineColor: "#F7931B",
+          data: gains,
+        }
+      : {
+          title: "Saídas",
+          lineColor: "#E44C4E",
+          data: expenses,
+        };
   }, [type]);
 
   const months = useMemo(() => {
@@ -62,7 +64,9 @@ const List = () => {
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
-    listData.forEach((item) => {
+    const { data } = pageData;
+
+    data.forEach((item) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
 
@@ -77,7 +81,7 @@ const List = () => {
         label: year,
       };
     });
-  }, [listData]);
+  }, [pageData]);
 
   const handleFrequencyClick = (frequency: string) => {
     const alreadySelected = frequencyFilterSelected.findIndex(
@@ -94,11 +98,30 @@ const List = () => {
     }
   };
 
+  const handleMonthSelected = (month: string) => {
+    try {
+      const parseMonth = Number(month);
+      setMonthSelected(parseMonth);
+    } catch {
+      throw new Error("Invalid month value. Is accept 0 - 24.");
+    }
+  };
+
+  const handleYearSelected = (year: string) => {
+    try {
+      const parseMonth = Number(year);
+      setYearSelected(parseMonth);
+    } catch {
+      throw new Error("Invalid year value. Is accept integer numbers.");
+    }
+  };
+
   useEffect(() => {
-    const filteredDate = listData.filter((item) => {
+    const { data } = pageData;
+    const filteredDate = data.filter((item) => {
       const date = new Date(item.date);
-      const month = String(date.getMonth() + 1);
-      const year = String(date.getFullYear());
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
 
       return (
         month === monthSelected &&
@@ -120,7 +143,7 @@ const List = () => {
 
     setData(formattedData);
   }, [
-    listData,
+    pageData,
     monthSelected,
     yearSelected,
     data.length,
@@ -129,15 +152,15 @@ const List = () => {
 
   return (
     <S.Container>
-      <ContentHeader title={title} linecolor={LineColor}>
+      <ContentHeader title={pageData.title} linecolor={pageData.lineColor}>
         <SelectInput
           options={months}
-          onChange={(e) => setMonthSelected(e.target.value)}
+          onChange={(e) => handleMonthSelected(e.target.value)}
           defaultValue={monthSelected}
         />
         <SelectInput
           options={years}
-          onChange={(e) => setYearSelected(e.target.value)}
+          onChange={(e) => handleYearSelected(e.target.value)}
           defaultValue={yearSelected}
         />
       </ContentHeader>
