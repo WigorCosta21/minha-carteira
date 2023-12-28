@@ -5,6 +5,7 @@ import gains from "../../repositories/gains";
 
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectIput";
+import WalletBox from "../../components/WalletBox";
 
 import listOfMonths from "../../utils/months";
 
@@ -79,6 +80,29 @@ const Dashboard = () => {
           defaultValue={yearSelected}
         />
       </ContentHeader>
+      <S.Content>
+        <WalletBox
+          title="saldo"
+          color="#4E41F0"
+          amount={150}
+          footerLabel="atualizado com base nas entradas e saídas"
+          icon="dolar"
+        />
+        <WalletBox
+          title="entradas"
+          color="#F7931B"
+          amount={5000.0}
+          footerLabel="atualizado com base nas entradas e saídas"
+          icon="arrowUp"
+        />
+        <WalletBox
+          title="saídas"
+          color="#E44C4E"
+          amount={4850.0}
+          footerLabel="atualizado com base nas entradas e saídas"
+          icon="arrowDown"
+        />
+      </S.Content>
     </S.Container>
   );
 };
