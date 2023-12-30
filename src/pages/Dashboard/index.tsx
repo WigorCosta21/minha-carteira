@@ -5,6 +5,7 @@ import gains from "../../repositories/gains";
 
 import ContentHeader from "../../components/ContentHeader";
 import MessageBox from "../../components/MessageBox";
+import PieChartBox from "../../components/PieChartBox";
 import SelectInput from "../../components/SelectIput";
 import WalletBox from "../../components/WalletBox";
 
@@ -108,7 +109,7 @@ const Dashboard = () => {
           "Verifique seus gastos e tente cortar algumas coisas desnecessárias.",
         icon: sadImg,
       };
-    } else if (totalBalance == 0) {
+    } else if (totalBalance === 0) {
       return {
         title: "Uffa!",
         description: "Neste mês você gastou exatamente o que ganhou.",
@@ -125,6 +126,31 @@ const Dashboard = () => {
       };
     }
   }, [totalBalance]);
+
+  const relationExpensesVersusGains = useMemo(() => {
+    const total = totalGains + totalExpenses;
+
+    const percentGains = (totalGains / total) * 100;
+
+    const percentExpenses = (totalExpenses / total) * 100;
+
+    const data = [
+      {
+        name: "Entradas",
+        value: totalGains,
+        percent: Number(percentGains.toFixed(1)),
+        color: "#F7931B",
+      },
+      {
+        name: "Saídas",
+        value: totalExpenses,
+        percent: Number(percentExpenses.toFixed(1)),
+        color: "#E44C4E",
+      },
+    ];
+
+    return data;
+  }, [totalGains, totalExpenses]);
 
   const handleMonthSelected = (month: string) => {
     try {
@@ -186,6 +212,8 @@ const Dashboard = () => {
           footerText={message.footerText}
           icon={message.icon}
         />
+
+        <PieChartBox data={relationExpensesVersusGains} />
       </S.Content>
     </S.Container>
   );
