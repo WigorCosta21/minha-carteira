@@ -4,10 +4,13 @@ import expenses from "../../repositories/expenses";
 import gains from "../../repositories/gains";
 
 import ContentHeader from "../../components/ContentHeader";
+import MessageBox from "../../components/MessageBox";
 import SelectInput from "../../components/SelectIput";
 import WalletBox from "../../components/WalletBox";
 
 import listOfMonths from "../../utils/months";
+
+import happyImg from "../../assets/happy.svg";
 
 import * as S from "./style";
 
@@ -101,6 +104,12 @@ const Dashboard = () => {
           amount={4850.0}
           footerLabel="atualizado com base nas entradas e saídas"
           icon="arrowDown"
+        />
+        <MessageBox
+          title="Muito bem!"
+          description="Sua carteira está positiva!"
+          footerText="Continue assim. Considere investir o seu saldo."
+          icon={happyImg}
         />
       </S.Content>
     </S.Container>
