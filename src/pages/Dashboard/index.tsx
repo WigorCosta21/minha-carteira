@@ -245,22 +245,19 @@ const Dashboard = () => {
     const percentRecurrent = Number(
       ((amountRecurrent / total) * 100).toFixed(1)
     );
-
-    const percentEventual = Number(
-      ((amountRecurrent / total) * 100).toFixed(1)
-    );
+    const percentEventual = Number(((amountEventual / total) * 100).toFixed(1));
 
     return [
       {
         name: "Recorrentes",
         amount: amountRecurrent,
-        percent: percentRecurrent,
+        percent: percentRecurrent ? percentRecurrent : 0,
         color: "#F7931B",
       },
       {
         name: "Eventuais",
         amount: amountEventual,
-        percent: percentEventual,
+        percent: percentEventual ? percentEventual : 0,
         color: "#E44C4E",
       },
     ];
@@ -293,10 +290,7 @@ const Dashboard = () => {
     const percentRecurrent = Number(
       ((amountRecurrent / total) * 100).toFixed(1)
     );
-
-    const percentEventual = Number(
-      ((amountRecurrent / total) * 100).toFixed(1)
-    );
+    const percentEventual = Number(((amountEventual / total) * 100).toFixed(1));
 
     return [
       {

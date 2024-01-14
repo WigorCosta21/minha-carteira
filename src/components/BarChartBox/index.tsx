@@ -1,6 +1,7 @@
 import { ResponsiveContainer, BarChart, Bar, Cell, Tooltip } from "recharts";
 
 import * as S from "./styles";
+import formatCurrency from "../../utils/formatCurrency";
 
 interface IBarChartBox {
   title: string;
@@ -29,11 +30,15 @@ const BarChartBox = ({ title, data }: IBarChartBox) => {
       <S.SideRight>
         <ResponsiveContainer>
           <BarChart data={data}>
-            <Bar dataKey="amount">
+            <Bar dataKey="amount" name="Valor">
               {data.map((indicator) => (
                 <Cell key={indicator.name} fill={indicator.color} />
               ))}
             </Bar>
+            <Tooltip
+              cursor={{ fill: "none" }}
+              formatter={(value) => formatCurrency(Number(value))}
+            />
           </BarChart>
         </ResponsiveContainer>
       </S.SideRight>
