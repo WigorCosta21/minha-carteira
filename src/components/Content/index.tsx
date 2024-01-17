@@ -5,8 +5,8 @@ interface IContentProps {
   children: ReactNode;
 }
 
-const Content = ({ children }: IContentProps) => {
-  return <S.Container>{children}</S.Container>;
-};
+const Content = ({ children }: IContentProps) => (
+  <S.Container>{children}</S.Container>
+);
 
 export default Content;

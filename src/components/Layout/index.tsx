@@ -9,14 +9,12 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout = ({ children }: Props) => {
-  return (
-    <S.Grid>
-      <MainHeader />
-      <Aside />
-      <Content>{children}</Content>
-    </S.Grid>
-  );
-};
+const Layout = ({ children }: Props) => (
+  <S.Grid>
+    <MainHeader />
+    <Aside />
+    <Content>{children}</Content>
+  </S.Grid>
+);
 
 export default Layout;

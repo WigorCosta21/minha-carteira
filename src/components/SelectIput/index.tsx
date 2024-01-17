@@ -14,18 +14,16 @@ const SelectInput = ({
   options,
   onChange,
   defaultValue,
-}: ISelectInputProps) => {
-  return (
-    <S.Container>
-      <select onChange={onChange} defaultValue={defaultValue}>
-        {options.map((option) => (
-          <option key={option.label} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </S.Container>
-  );
-};
+}: ISelectInputProps) => (
+  <S.Container>
+    <select onChange={onChange} defaultValue={defaultValue}>
+      {options.map((option) => (
+        <option key={option.label} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </S.Container>
+);
 
 export default SelectInput;

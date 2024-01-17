@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import expenses from "../../repositories/expenses";
 import gains from "../../repositories/gains";
@@ -308,23 +308,23 @@ const Dashboard = () => {
     ];
   }, [monthSelected, yearSelected]);
 
-  const handleMonthSelected = (month: string) => {
+  const handleMonthSelected = useCallback((month: string) => {
     try {
       const parseMonth = Number(month);
       setMonthSelected(parseMonth);
     } catch {
       throw new Error("Invalid month value. Is accept 0 - 24.");
     }
-  };
+  }, []);
 
-  const handleYearSelected = (year: string) => {
+  const handleYearSelected = useCallback((year: string) => {
     try {
       const parseMonth = Number(year);
       setYearSelected(parseMonth);
     } catch {
       throw new Error("Invalid year value. Is accept integer numbers.");
     }
-  };
+  }, []);
 
   return (
     <S.Container>
