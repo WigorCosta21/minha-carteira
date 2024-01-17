@@ -1,15 +1,22 @@
 import * as S from "./styles";
 
-const Toogle = () => (
+interface IToggleProps {
+  labelLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange(): void;
+}
+
+const Toogle = ({ labelLeft, labelRight, checked, onChange }: IToggleProps) => (
   <S.Container>
-    <S.ToogleLabel>Light</S.ToogleLabel>
+    <S.ToogleLabel>{labelLeft}</S.ToogleLabel>
     <S.ToogleSelector
-      checked
+      checked={checked}
       uncheckedIcon={false}
       checkedIcon={false}
-      onChange={() => console.log("Mudou")}
+      onChange={onChange}
     />
-    <S.ToogleLabel>Dark</S.ToogleLabel>
+    <S.ToogleLabel>{labelRight}</S.ToogleLabel>
   </S.Container>
 );
 
