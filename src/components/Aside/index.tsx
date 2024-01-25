@@ -8,8 +8,11 @@ import {
 import logoImg from "../../assets/logo.svg";
 
 import * as S from "./styles";
+import { useAuth } from "../../hooks/auth";
 
 const Aside = () => {
+  const { signOut } = useAuth();
+
   return (
     <S.Container>
       <S.Header>
@@ -17,7 +20,7 @@ const Aside = () => {
         <S.Title>Minha Carteira</S.Title>
       </S.Header>
       <S.MenuContainer>
-        <S.MenuItemLink href="/dashboard">
+        <S.MenuItemLink href="/">
           <MdDashboard />
           Dashboard
         </S.MenuItemLink>
@@ -29,10 +32,10 @@ const Aside = () => {
           <MdArrowDownward />
           Saídas
         </S.MenuItemLink>
-        <S.MenuItemLink href="#">
+        <S.MenuItemButton onClick={signOut}>
           <MdExitToApp />
           Sair
-        </S.MenuItemLink>
+        </S.MenuItemButton>
       </S.MenuContainer>
     </S.Container>
   );
