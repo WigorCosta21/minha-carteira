@@ -2,8 +2,11 @@ import { useMemo, useState } from "react";
 
 import emojis from "../../utils/emojis";
 
-import * as S from "./styles";
 import { useTheme } from "../../hooks/themes";
+
+import Toggle from "../Toogle";
+
+import * as S from "./styles";
 
 const MainHeader = () => {
   const { toggleTheme, theme } = useTheme();
@@ -25,7 +28,7 @@ const MainHeader = () => {
 
   return (
     <S.Container>
-      <S.Toggle
+      <Toggle
         labelLeft="Light"
         labelRight="Dark"
         checked={darkTheme}
