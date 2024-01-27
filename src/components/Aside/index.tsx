@@ -14,7 +14,7 @@ const Aside = () => {
   const { signOut } = useAuth();
 
   return (
-    <S.Container>
+    <S.Container menuIsOpen={true}>
       <S.Header>
         <S.LogoImg src={logoImg} alt="Logo Minha Carteira" />
         <S.Title>Minha Carteira</S.Title>
