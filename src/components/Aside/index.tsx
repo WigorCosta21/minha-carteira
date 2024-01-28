@@ -16,8 +16,11 @@ import Toggle from "../Toogle";
 import logoImg from "../../assets/logo.svg";
 
 import * as S from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const Aside = () => {
+  const navigate = useNavigate();
+
   const { theme, toggleTheme } = useTheme();
   const { signOut } = useAuth();
 
@@ -33,6 +36,11 @@ const Aside = () => {
   const handleChangeTheme = () => {
     setDarkTheme(!darkTheme);
     toggleTheme();
+  };
+
+  const handleSignOut = () => {
+    signOut();
+    navigate("/");
   };
 
   return (
@@ -58,7 +66,7 @@ const Aside = () => {
           <MdArrowDownward />
           Saídas
         </S.MenuItemLink>
-        <S.MenuItemButton onClick={signOut}>
+        <S.MenuItemButton onClick={handleSignOut}>
           <MdExitToApp />
           Sair
         </S.MenuItemButton>
